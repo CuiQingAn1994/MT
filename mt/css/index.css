@@ -205,7 +205,8 @@ div.guess{
 /*商品样式*/
 .list-container {
 	margin-top: 1px;
-	padding: 0 10px;
+	/*padding-bottom: 50px;*/
+	padding: 0 10px 50px;
 	background: #fff;
 } 
 .list-container .item {
