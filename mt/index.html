@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>美团</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+<div id="app">
+<section class="header">
+	<ul class="clear lunbo"  @touchstart="start" @touchmove="move" @touchend="end" :style="'marginLeft:'+left+'px; transition:all '+time+'s ease 0s'">
+				<li v-for="item in banner_img"><img :src="'img/home/banner/'+item.url" alt=""></li>
+			</ul>
+			<span class="address">北京</span>
+			<span class="more">&gt;</span>
+			<!-- <span class="saoma">扫码</span> -->
+			<div class="search">
+				<span><img src="img/spr/search.png" alt=""></span>
+				<input type="text" placeholder="外卖，不只一碗温暖的饭菜">	
+			</div>
+	</section>
+	<router-view ></router-view>
+</div>
+<template id="tpl_home">
+	<section class="home" id="home">
+		<!-- 分类按钮 -->
+		<ul class="types clearfix">
+			<li v-for="(item, index) in types">
+				<a :href="'#/list/type/' + item.id">
+					<img :src="'img/icon/' + item.url" alt="">
+					<span>{{item.title}}</span>
+					<span class="hot" v-if="item.hot">热门</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="ad clearfix">
+			<li v-for="(item, index) in ad">
+				<a :href="'#/detail/' + item.id">
+					<h3 >{{item.title}}</h3>
+					<p :class="'color' + index">{{item.description}}</p>
+					<img :src="'img/ad/' + item.url" alt="">
+				</a>
+			</li>
+		</ul>
+		<div class="guess">--&nbsp;&nbsp; 猜你喜欢 &nbsp;&nbsp;--</div>
+		<ul class="list-container">
+			<li class="item" v-for="item in list">
+				<a :href="'#/detail/' + item.id">
+					<img :src="'img/list/' + item.img" alt="">
+					<div class="text-container">
+						<h1>{{item.title}}</h1>
+						<p>
+							<span class="price">{{item.price | priceFilter}}</span>
+							<span class="origin-price">{{item.originPrice | originPriceFilter}}</span>
+							<span class="sales">{{item.sales | salesFilter}}</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<div class="fix clear" id="fix">
+				<ul>
+					<li><a href="#/home"><img src="img/spr/main.png" alt=""><span>首页</span></a></li>
+					<li><a href="#/class"><img src="img/spr/class.png" alt=""><span>附近</span></a></li>
+					<li><a href="#/shopcar"><img src="img/spr/shop.png" alt=""><span>购物车</span></a></li>
+					<li><a href="#/login"><img src="img/spr/my.png" alt=""><span>我的</span></a></li>
+				</ul>
+			</div>
+	</section>
+</template>
+<!-- 定义列表页模板 -->
+
+<!-- <script type="text/template"></script> -->
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/vue-router.js"></script>
+<script type="text/javascript" src="js/vue-resource.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
